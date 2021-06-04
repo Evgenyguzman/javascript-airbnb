@@ -1,9 +1,5 @@
 # TypeScript Style Guide and Coding Conventions
 
-> An unofficial TypeScript Style Guide
-
-People have asked me for my opinions on this. Personally I don't enforce these a lot on my teams and projects but it does help to have these mentioned as a tiebreaker when someone feels the need to have such strong consistency. There are other things that I feel much more strongly about and those are covered in the [tips chapter](../tips/main.md) (e.g. type assertion is bad, property setters are bad) 🌹.
-
 Key Sections:
 
 - [Variable](#variable-and-function)
@@ -27,14 +23,14 @@ Key Sections:
 
 > Reason: Conventional JavaScript
 
-**Bad**
+**Плохо**
 
 ```ts
 var FooVar;
 function BarFunc() {}
 ```
 
-**Good**
+**Хорошо**
 
 ```ts
 var fooVar;
@@ -47,13 +43,13 @@ function barFunc() {}
 
 > Reason: This is actually fairly conventional in standard JavaScript.
 
-**Bad**
+**Плохо**
 
 ```ts
 class foo {}
 ```
 
-**Good**
+**Хорошо**
 
 ```ts
 class Foo {}
@@ -63,7 +59,7 @@ class Foo {}
 
 > Reason: Naturally follows from variable and function naming convention.
 
-**Bad**
+**Плохо**
 
 ```ts
 class Foo {
@@ -72,7 +68,7 @@ class Foo {
 }
 ```
 
-**Good**
+**Хорошо**
 
 ```ts
 class Foo {
@@ -91,17 +87,17 @@ class Foo {
 
 > Reason: Similar to class
 
-- **Don't** prefix with `I`
+- **Не** используй префикс `I` для интерфейсоов
 
 > Reason: Unconventional. `lib.d.ts` defines important interfaces without an `I` (e.g. Window, Document etc).
 
-**Bad**
+**Плохо**
 
 ```ts
 interface IFoo {}
 ```
 
-**Good**
+**Хорошо**
 
 ```ts
 interface Foo {}
@@ -123,13 +119,13 @@ interface Foo {}
 
 > Reason: Convention followed by the TypeScript team. Namespaces are effectively just a class with static members. Class names are `PascalCase` => Namespace names are `PascalCase`
 
-**Bad**
+**Плохо**
 
 ```ts
 namespace foo {}
 ```
 
-**Good**
+**Хорошо**
 
 ```ts
 namespace Foo {}
@@ -141,13 +137,13 @@ namespace Foo {}
 
 > Reason: Similar to Class. Is a Type.
 
-**Bad**
+**Плохо**
 
 ```ts
 enum color {}
 ```
 
-**Good**
+**Хорошо**
 
 ```ts
 enum Color {}
@@ -157,7 +153,7 @@ enum Color {}
 
 > Reason: Convention followed by TypeScript team i.e. the language creators e.g `SyntaxKind.StringLiteral`. Also helps with translation (code generation) of other languages into TypeScript.
 
-**Bad**
+**Плохо**
 
 ```ts
 enum Color {
@@ -165,7 +161,7 @@ enum Color {
 }
 ```
 
-**Good**
+**Хорошо**
 
 ```ts
 enum Color {
@@ -179,13 +175,13 @@ enum Color {
 
 > Reason: these values are commonly used to keep a consistent structure between values. In TypeScript you use _types_ to denote the structure
 
-**Bad**
+**Плохо**
 
 ```ts
 let foo = { x: 123, y: undefined };
 ```
 
-**Good**
+**Хорошо**
 
 ```ts
 let foo: { x: number; y?: number } = { x: 123 };
@@ -193,13 +189,13 @@ let foo: { x: number; y?: number } = { x: 123 };
 
 - Use `undefined` in general (do consider returning an object like `{valid:boolean, value?:Foo}` instead)
 
-**Bad**
+**Плохо**
 
 ```ts
 return null;
 ```
 
-**Good**
+**Хорошо**
 
 ```ts
 return undefined;
@@ -209,13 +205,13 @@ return undefined;
 
 > Reason: It is conventional in Node.js e.g. `error` is `null` for NodeBack style callbacks.
 
-**Bad**
+**Плохо**
 
 ```ts
 cb(undefined);
 ```
 
-**Good**
+**Хорошо**
 
 ```ts
 cb(null);
@@ -223,13 +219,13 @@ cb(null);
 
 - Use _truthy_ check for **objects** being `null` or `undefined`
 
-**Bad**
+**Плохо**
 
 ```ts
 if (error === null)
 ```
 
-**Good**
+**Хорошо**
 
 ```ts
 if (error)
@@ -237,29 +233,16 @@ if (error)
 
 - Use `== null` / `!= null` (not `===` / `!==`) to check for `null` / `undefined` on primitives as it works for both `null`/`undefined` but not other falsy values (like `''`, `0`, `false`) e.g.
 
-**Bad**
+**Плохо**
 
 ```ts
 if (error !== null) // does not rule out undefined
 ```
 
-**Good**
+**Хорошо**
 
 ```ts
 if (error != null) // rules out both null and undefined
-```
-
-## Formatting
-
-The TypeScript compiler ships with a very nice formatting language service. Whatever output it gives by default is good enough to reduce the cognitive overload on the team.
-
-Use [`tsfmt`](https://github.com/vvakame/typescript-formatter) to automatically format your code on the command line. Also, your IDE (atom/vscode/vs/sublime) already has formatting support built-in.
-
-Examples:
-
-```ts
-// Space before type i.e. foo:<space>string
-const foo: string = "hello";
 ```
 
 ## Quotes
@@ -290,7 +273,7 @@ const foo: string = "hello";
 
 - Annotate arrays as `foos: Foo[]` instead of `foos: Array<Foo>`.
 
-> Reasons: It's easier to read. It's used by the TypeScript team. Makes easier to know something is an array as the mind is trained to detect `[]`.
+> Reasons: It's easier to read. It's used by the TypeScript teams. Makes easier to know something is an array as the mind is trained to detect `[]`.
 
 ## Filename
 
